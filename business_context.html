@@ -231,17 +231,6 @@
                 >
             </div>
 
-            <div class="form-group">
-                <label>
-                    Instagram URL <span class="optional">(Optional)</span>
-                </label>
-                <input
-                    type="url"
-                    id="instagramUrl"
-                    placeholder="https://www.instagram.com/yourcompany"
-                >
-            </div>
-
             <div class="status" id="status"></div>
 
             <div class="preview-box" id="previewBox">
@@ -273,7 +262,6 @@
             constructor() {
                 this.form = document.getElementById('businessForm');
                 this.websiteInput = document.getElementById('websiteUrl');
-                this.instagramInput = document.getElementById('instagramUrl');
                 this.statusEl = document.getElementById('status');
                 this.continueBtn = document.getElementById('continueBtn');
                 this.previewBox = document.getElementById('previewBox');
@@ -296,7 +284,6 @@
                 }
 
                 const websiteUrl = this.websiteInput.value.trim();
-                const instagramUrl = this.instagramInput.value.trim();
 
                 // If no URL provided, just proceed without context
                 if (!websiteUrl) {
@@ -312,10 +299,10 @@
                     return;
                 }
 
-                await this.fetchBusinessContext(websiteUrl, instagramUrl);
+                await this.fetchBusinessContext(websiteUrl);
             }
 
-            async fetchBusinessContext(websiteUrl, instagramUrl) {
+            async fetchBusinessContext(websiteUrl) {
                 this.showStatus('Fetching business information...', 'loading');
                 this.continueBtn.disabled = true;
 
@@ -326,8 +313,7 @@
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            website_url: websiteUrl,
-                            instagram_url: instagramUrl
+                            website_url: websiteUrl
                         })
                     });
 

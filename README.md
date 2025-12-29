@@ -29,7 +29,6 @@ python live_streaming_server.py
 | `/` | Redirects to `/business` |
 | `/business` | Business context input (start here) |
 | `/enhanced` | Voice configuration UI |
-| `/pcm` | PCM audio player |
 | `/ws/{user_id}` | WebSocket connection |
 | `/health` | Health check |
 
@@ -39,6 +38,7 @@ python live_streaming_server.py
 ├── live_streaming_server.py   # Main server (FastAPI + WebSocket)
 ├── tools.py                   # Agent configuration tools
 ├── phoenix_config.py          # Observability setup
+├── test_tools.py              # Tool unit tests
 ├── enhanced_ui.html           # Voice configuration UI
 ├── business_context.html      # Business context input page
 ├── requirements.txt           # Python dependencies
