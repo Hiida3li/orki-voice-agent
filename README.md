@@ -547,16 +547,20 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 **3. Install Dependencies**
 ```bash
-pip install fastapi uvicorn websockets google-adk python-dotenv
+pip install -r requirements.txt
 ```
 
 **4. Set API Key**
 Create `.env` file:
 ```
-GEMINI_API_KEY=your_actual_api_key_here
+GOOGLE_API_KEY=your_actual_api_key_here
+PHOENIX_API_KEY=your_phoenix_key (optional, for tracing)
+PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com/s/your-space (optional)
+PHOENIX_PROJECT_NAME=voice-agent-tools (optional)
+ENABLE_PHOENIX_TRACING=true (optional)
 ```
 
-Get API key from: https://aistudio.google.com/apikey
+Get Google API key from: https://aistudio.google.com/apikey
 
 **5. Generate SSL Certificates**
 ```bash
@@ -651,7 +655,7 @@ uvicorn.run(app, host="0.0.0.0", port=8006,
 - Buffer timeout: 0.3 seconds
 
 **Google ADK Model:**
-- Model: `gemini-live-2.5-flash-preview`
+- Model: `gemini-2.5-flash-native-audio-latest`
 - Voice: `Charon` (default, can be changed)
 - Response modalities: AUDIO
 
@@ -818,22 +822,27 @@ python test_instruct_tool.py
 cd voice
 python -m venv venv
 source venv/bin/activate
-pip install fastapi uvicorn websockets google-adk python-dotenv
+pip install -r requirements.txt
 
 # 2. Configure
-echo "GEMINI_API_KEY=your_key_here" > .env
-./create_cert.sh
+# Create .env file with:
+# GOOGLE_API_KEY=your_key_here
+# PHOENIX_API_KEY=your_phoenix_key (optional, for tracing)
+# PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com/s/your-space (optional)
+
+./create_cert.sh  # Generate SSL certificates
 
 # 3. Run
 python live_streaming_server.py
+# Server starts at https://localhost:8006
 
 # 4. Open
-# Visit https://localhost:8006/enhanced
+# Visit https://localhost:8006/business (start here for business context)
+# Or https://localhost:8006/enhanced (voice configuration UI)
 # Click "Start Session"
 # Say: "Hi, I want to create an agent named Alex"
 # Follow the conversation naturally
 # Watch your configuration build in real-time
-# Test interruption by speaking while AI is talking
 ```
 
 ---
