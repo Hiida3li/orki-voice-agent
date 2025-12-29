@@ -10,7 +10,7 @@
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #201f27;
             min-height: 100vh;
             padding: 20px;
         }
@@ -28,41 +28,42 @@
             gap: 20px;
         }
         .container {
-            background: white;
+            background: #2c435e;
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         h1 {
-            color: #333;
+            color: #ffffff;
             margin-bottom: 5px;
             font-size: 24px;
         }
         h2 {
-            color: #333;
+            color: #ffffff;
             margin-bottom: 15px;
             font-size: 18px;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #4c8bca;
             padding-bottom: 8px;
         }
         .subtitle {
-            color: #666;
+            color: #a0aec0;
             margin-bottom: 15px;
             font-size: 13px;
         }
         .status {
             text-align: center;
             padding: 12px;
-            background: #f0f0f0;
+            background: #1a2332;
             border-radius: 10px;
             margin: 15px 0;
             font-weight: 500;
             font-size: 14px;
+            color: #a0aec0;
         }
-        .status.connected { background: #d4edda; color: #155724; }
-        .status.streaming { background: #cce5ff; color: #004085; }
-        .status.speaking { background: #fff3cd; color: #856404; }
-        .status.error { background: #f8d7da; color: #721c24; }
+        .status.connected { background: #1e4620; color: #a3d9a5; }
+        .status.streaming { background: #1a3a5c; color: #4c8bca; }
+        .status.speaking { background: #4a3f1c; color: #f0c674; }
+        .status.error { background: #4a1c1c; color: #e57373; }
 
         .controls {
             display: flex;
@@ -93,7 +94,7 @@
             cursor: not-allowed;
         }
         .btn-start {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4c8bca;
             color: white;
         }
         .btn-stop {
@@ -101,7 +102,7 @@
             color: white;
         }
         .btn-create {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: #4c8bca;
             color: white;
             font-size: 16px;
             padding: 15px 30px;
@@ -109,10 +110,10 @@
 
         /* Agent Configuration Panel */
         .config-panel {
-            background: white;
+            background: #2c435e;
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -128,7 +129,7 @@
         }
         .config-field-label {
             font-size: 12px;
-            color: #666;
+            color: #a0aec0;
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 5px;
@@ -137,16 +138,18 @@
         /* Input field styles */
         .text-input {
             padding: 12px;
-            border: 2px solid #e9ecef;
+            border: 2px solid #3d5a80;
             border-radius: 8px;
             font-size: 14px;
             transition: all 0.3s;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a2332;
+            color: #ffffff;
         }
         .text-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #4c8bca;
+            box-shadow: 0 0 0 3px rgba(76, 139, 202, 0.2);
         }
 
         /* Checkbox styles */
@@ -161,13 +164,13 @@
             gap: 8px;
             cursor: pointer;
             font-size: 14px;
-            color: #333;
+            color: #ffffff;
         }
         .checkbox-label input[type="checkbox"] {
             width: 20px;
             height: 20px;
             cursor: pointer;
-            accent-color: #667eea;
+            accent-color: #4c8bca;
         }
 
         /* Chip styles */
@@ -182,40 +185,42 @@
             font-size: 13px;
             cursor: pointer;
             transition: all 0.3s;
-            border: 2px solid #e9ecef;
-            background: white;
+            border: 2px solid #3d5a80;
+            background: #1a2332;
+            color: #a0aec0;
             font-weight: 500;
             user-select: none;
         }
         .chip:hover {
-            border-color: #667eea;
+            border-color: #4c8bca;
             transform: translateY(-2px);
         }
         .chip.selected {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4c8bca;
             color: white;
-            border-color: #667eea;
+            border-color: #4c8bca;
         }
         .chip.multi-select.selected {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            border-color: #28a745;
+            background: #4c8bca;
+            border-color: #4c8bca;
         }
 
         /* Dropdown styles */
         .dropdown {
             padding: 12px;
-            border: 2px solid #e9ecef;
+            border: 2px solid #3d5a80;
             border-radius: 8px;
             font-size: 14px;
             cursor: pointer;
-            background: white;
+            background: #1a2332;
+            color: #ffffff;
             transition: all 0.3s;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         .dropdown:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #4c8bca;
+            box-shadow: 0 0 0 3px rgba(76, 139, 202, 0.2);
         }
 
         /* Interaction steps styles */
@@ -229,12 +234,12 @@
             align-items: center;
             gap: 10px;
             padding: 12px;
-            background: #f8f9fa;
+            background: #1a2332;
             border-radius: 8px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #4c8bca;
         }
         .step-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4c8bca;
             color: white;
             width: 28px;
             height: 28px;
@@ -249,7 +254,8 @@
         .step-input {
             flex: 1;
             border: none;
-            background: white;
+            background: #2c435e;
+            color: #ffffff;
             padding: 8px;
             border-radius: 6px;
             font-size: 13px;
@@ -271,7 +277,7 @@
         }
         .add-step-btn {
             padding: 10px;
-            background: #28a745;
+            background: #4c8bca;
             color: white;
             border: none;
             border-radius: 8px;
@@ -289,15 +295,15 @@
             overflow-y: auto;
         }
         .example-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            background: #1a2332;
             border-radius: 10px;
             padding: 15px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #4c8bca;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .example-header {
             font-weight: 700;
-            color: #667eea;
+            color: #4c8bca;
             font-size: 11px;
             margin-bottom: 10px;
             text-transform: uppercase;
@@ -307,7 +313,7 @@
         }
         .example-label {
             font-size: 10px;
-            color: #666;
+            color: #a0aec0;
             text-transform: uppercase;
             font-weight: 700;
             margin-bottom: 4px;
@@ -315,10 +321,12 @@
         .example-input {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid #3d5a80;
             border-radius: 6px;
             font-size: 13px;
             resize: none;
+            background: #2c435e;
+            color: #ffffff;
         }
         .example-remove {
             background: #dc3545;
@@ -340,11 +348,11 @@
             overflow-y: auto;
         }
         .handover-item {
-            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+            background: #1a2332;
             border-radius: 10px;
             padding: 15px;
             border-left: 4px solid #dc3545;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .handover-header {
             font-weight: 700;
@@ -358,17 +366,19 @@
         .textarea-input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e9ecef;
+            border: 2px solid #3d5a80;
             border-radius: 8px;
             font-size: 13px;
             min-height: 100px;
             resize: vertical;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a2332;
+            color: #ffffff;
         }
         .textarea-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #4c8bca;
+            box-shadow: 0 0 0 3px rgba(76, 139, 202, 0.2);
         }
 
 
@@ -376,17 +386,17 @@
         .tool-calls-panel {
             flex: 1;
             overflow-y: auto;
-            background: #f8f9fa;
+            background: #1a2332;
             border-radius: 10px;
             padding: 15px;
             max-height: 300px;
         }
         .tool-call-item {
-            background: white;
+            background: #2c435e;
             border-radius: 10px;
             padding: 12px;
             margin-bottom: 10px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #4c8bca;
             animation: slideIn 0.3s;
         }
         .tool-call-header {
@@ -400,16 +410,16 @@
         }
         .tool-call-name {
             font-weight: 600;
-            color: #333;
+            color: #ffffff;
             font-size: 14px;
         }
         .tool-call-json {
-            background: #f1f3f5;
+            background: #1a2332;
             padding: 10px;
             border-radius: 6px;
             font-family: 'Courier New', monospace;
             font-size: 11px;
-            color: #495057;
+            color: #a0aec0;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
@@ -417,7 +427,8 @@
         .tool-result {
             margin-top: 8px;
             padding: 10px;
-            background: #d4edda;
+            background: #1e4620;
+            color: #a3d9a5;
             border-radius: 6px;
             font-size: 12px;
         }
@@ -448,7 +459,7 @@
 
         .audio-visualizer {
             height: 50px;
-            background: #f0f0f0;
+            background: #1a2332;
             border-radius: 10px;
             margin: 15px 0;
             display: flex;
@@ -458,7 +469,7 @@
         }
         .audio-bar {
             width: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4c8bca;
             border-radius: 2px;
             transition: height 0.1s;
         }
@@ -468,15 +479,16 @@
             align-items: center;
             gap: 10px;
             padding: 8px 16px;
-            background: rgba(255,255,255,0.9);
+            background: #1a2332;
             border-radius: 50px;
+            color: #ffffff;
         }
         .volume-slider {
             width: 100px;
             height: 5px;
             -webkit-appearance: none;
             appearance: none;
-            background: #ddd;
+            background: #3d5a80;
             border-radius: 3px;
             outline: none;
         }
@@ -485,7 +497,7 @@
             appearance: none;
             width: 15px;
             height: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4c8bca;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -494,7 +506,7 @@
             max-height: 250px;
             overflow-y: auto;
             padding: 15px;
-            background: #f8f9fa;
+            background: #1a2332;
             border-radius: 10px;
             margin: 15px 0;
         }
@@ -506,21 +518,21 @@
             animation: fadeIn 0.3s;
         }
         .message.user {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4c8bca;
             color: white;
             margin-left: auto;
             max-width: 70%;
             text-align: right;
         }
         .message.assistant {
-            background: white;
-            color: #333;
+            background: #2c435e;
+            color: #ffffff;
             max-width: 70%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .message.system {
-            background: #e9ecef;
-            color: #495057;
+            background: #3d5a80;
+            color: #a0aec0;
             text-align: center;
             font-style: italic;
             font-size: 12px;
@@ -576,22 +588,22 @@
 
             <!-- Business Context Section (if available) -->
             <div id="businessContextSection" style="display: none;">
-                <div style="background: linear-gradient(135deg, #e7f3ff 0%, #f0f7ff 100%); padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #667eea;">
-                    <div style="font-weight: 700; color: #667eea; font-size: 13px; margin-bottom: 10px; text-transform: uppercase;">
+                <div style="background: #1a2332; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #4c8bca;">
+                    <div style="font-weight: 700; color: #4c8bca; font-size: 13px; margin-bottom: 10px; text-transform: uppercase;">
                         📊 Business Context
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         <div>
-                            <span style="font-weight: 600; color: #555; font-size: 12px;">Company:</span>
-                            <span id="contextCompany" style="color: #333; font-size: 13px; margin-left: 8px;"></span>
+                            <span style="font-weight: 600; color: #a0aec0; font-size: 12px;">Company:</span>
+                            <span id="contextCompany" style="color: #ffffff; font-size: 13px; margin-left: 8px;"></span>
                         </div>
                         <div>
-                            <span style="font-weight: 600; color: #555; font-size: 12px;">Description:</span>
-                            <div id="contextDescription" style="color: #333; font-size: 12px; margin-top: 4px; line-height: 1.5;"></div>
+                            <span style="font-weight: 600; color: #a0aec0; font-size: 12px;">Description:</span>
+                            <div id="contextDescription" style="color: #ffffff; font-size: 12px; margin-top: 4px; line-height: 1.5;"></div>
                         </div>
                         <div id="contextFaqsWrapper" style="display: none;">
-                            <span style="font-weight: 600; color: #555; font-size: 12px;">FAQs:</span>
-                            <span id="contextFaqs" style="color: #333; font-size: 12px; margin-left: 8px;"></span>
+                            <span style="font-weight: 600; color: #a0aec0; font-size: 12px;">FAQs:</span>
+                            <span id="contextFaqs" style="color: #ffffff; font-size: 12px; margin-left: 8px;"></span>
                         </div>
                     </div>
                 </div>
