@@ -29,7 +29,7 @@ main_router = APIRouter()
 api_router = APIRouter(prefix="/api")
 
 
-# --- HTML Routes ---
+# HTML Routes
 
 @main_router.get("/")
 async def root():
@@ -61,7 +61,7 @@ async def business_context_page():
         return HTMLResponse(content=f.read())
 
 
-# --- API Routes ---
+#  API Routes
 
 @api_router.post("/extract-business-context", response_model=BusinessContextResponse)
 async def api_extract_business_context(request: BusinessContextRequest):
@@ -101,7 +101,7 @@ async def health_check():
     }
 
 
-# --- WebSocket Route ---
+# WebSocket Route
 
 @main_router.websocket("/ws/{user_id}")
 async def websocket_endpoint(

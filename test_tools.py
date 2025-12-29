@@ -4,7 +4,7 @@ Run this before starting the server to ensure tools are properly configured
 """
 
 import sys
-from tools import (
+from voice_agent.tools import (
     get_agent_name,
     get_personality,
     get_languages,
@@ -38,7 +38,7 @@ def test_get_agent_name():
     print(f"✓ Empty name: {result}")
     assert result['status'] == 'error'
 
-    print("✅ get_agent_name tests passed!")
+    print("get_agent_name tests passed!")
 
 
 def test_get_personality():
@@ -56,7 +56,7 @@ def test_get_personality():
     print(f"✓ Invalid personality: {result}")
     assert result['status'] == 'error'
 
-    print("✅ get_personality tests passed!")
+    print("get_personality tests passed!")
 
 
 def test_get_languages():
@@ -85,7 +85,7 @@ def test_get_languages():
     print(f"✓ Invalid language: {result}")
     assert result['status'] == 'error'
 
-    print("✅ get_languages tests passed!")
+    print("get_languages tests passed!")
 
 
 def test_get_dialect():
@@ -112,7 +112,7 @@ def test_get_dialect():
     print(f"✓ Invalid dialect: {result}")
     assert result['status'] == 'error'
 
-    print("✅ get_dialect tests passed!")
+    print("get_dialect tests passed!")
 
 
 def test_conversation_complete():
@@ -131,7 +131,7 @@ def test_conversation_complete():
     assert result['completed'] == True
     assert ctx.state['conversation_complete'] == True
 
-    print("✅ conversation_complete tests passed!")
+    print("conversation_complete tests passed!")
 
 
 def test_valid_options():
@@ -144,7 +144,7 @@ def test_valid_options():
     assert len(VALID_LANGUAGES) == 4
     assert len(VALID_DIALECTS) == 7
 
-    print("✅ Valid options verified!")
+    print("Valid options verified!")
 
 
 def main():
@@ -161,16 +161,16 @@ def main():
         test_conversation_complete()
 
         print("\n" + "=" * 60)
-        print("  ✅ ALL TESTS PASSED!")
+        print("ALL TESTS PASSED!")
         print("=" * 60)
-        print("\n🚀 Tools are working correctly. Ready to start the server!")
+        print("\nTools are working correctly. Ready to start the server!")
         return 0
 
     except AssertionError as e:
-        print(f"\n❌ TEST FAILED: {e}")
+        print(f"\nTEST FAILED: {e}")
         return 1
     except Exception as e:
-        print(f"\n❌ ERROR: {e}")
+        print(f"\nERROR: {e}")
         import traceback
         traceback.print_exc()
         return 1
