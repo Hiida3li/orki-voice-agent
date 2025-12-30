@@ -3,6 +3,9 @@
 .env.*
 !.env.example
 
+# Conversation output files (generated)
+conversation_outputs/*.json
+
 # SSL certificates
 *.pem
 
