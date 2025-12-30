@@ -18,7 +18,8 @@ cp .env.example .env
 ./create_cert.sh
 
 # 4. Run
-python live_streaming_server.py
+./start.sh
+# Or: python -m voice_agent
 # Server starts at https://localhost:8006
 ```
 
@@ -35,16 +36,45 @@ python live_streaming_server.py
 ## Project Structure
 
 ```
-├── live_streaming_server.py   # Main server (FastAPI + WebSocket)
-├── tools.py                   # Agent configuration tools
-├── phoenix_config.py          # Observability setup
-├── test_tools.py              # Tool unit tests
-├── enhanced_ui.html           # Voice configuration UI
-├── business_context.html      # Business context input page
-├── requirements.txt           # Python dependencies
-├── .env.example               # Environment variables template
-├── create_cert.sh             # SSL certificate generator
-└── conversation_outputs/      # Saved conversation logs
+voice_agent/                  # Main Python package
+├── __init__.py
+├── __main__.py               # Entry point for python -m voice_agent
+├── main.py                   # FastAPI app factory
+├── api/                      # HTTP API layer
+│   ├── models.py             # Pydantic request/response models
+│   └── routes.py             # API endpoints
+├── business/                 # Business context extraction
+│   ├── extractor.py          # Website scraping & parsing
+│   └── models.py             # Business data models
+├── config/                   # Configuration
+│   ├── agent_instructions.py # Agent prompt templates
+│   ├── observability.py      # Phoenix tracing setup
+│   └── settings.py           # Environment variables
+├── core/                     # Core agent logic
+│   ├── agent.py              # Agent factory
+│   ├── session.py            # Session management
+│   └── state.py              # Conversation state
+├── static/                   # Frontend files
+│   ├── business_context.html # Business input page
+│   └── enhanced_ui.html      # Voice configuration UI
+├── tools/                    # Agent tools
+│   ├── base.py               # Base validators & helpers
+│   ├── configuration.py      # Configuration tool implementations
+│   ├── constants.py          # Valid options & limits
+│   └── registry.py           # Tool registration
+└── websocket/                # WebSocket handling
+    ├── handlers.py           # Connection lifecycle
+    ├── messaging.py          # Bidirectional message routing
+    └── protocol.py           # Message types & encoding
+
+# Root files
+├── start.sh                  # Server startup script
+├── create_cert.sh            # SSL certificate generator
+├── test_tools.py             # Tool unit tests
+├── test_e2e.py               # End-to-end browser tests
+├── requirements.txt          # Python dependencies
+├── .env.example              # Environment template
+└── conversation_outputs/     # Saved conversation logs
 ```
 
 ## Environment Variables
@@ -91,19 +121,21 @@ The agent uses these tools to capture structured configuration:
 - Input: 16kHz mono PCM
 - Output: 24kHz mono PCM
 - Model: `gemini-2.5-flash-native-audio-latest`
+- Voice: Charon
 
 ### WebSocket Protocol
 
-**Client → Server (audio):**
+**Client to Server (audio):**
 ```json
 {"mime_type": "audio/pcm", "data": "base64_encoded_audio"}
 ```
 
-**Server → Client (responses):**
+**Server to Client (responses):**
 ```json
 {"mime_type": "audio/pcm", "data": "base64_audio"}
 {"mime_type": "text/plain", "data": "transcription"}
 {"type": "tool_call", "tool_name": "...", "arguments": {...}}
+{"type": "tool_result", "tool_name": "...", "result": {...}}
 {"type": "state_update", "conversation_state": {...}}
 {"turn_complete": true}
 ```
@@ -119,9 +151,13 @@ The agent uses these tools to capture structured configuration:
 ## Testing
 
 ```bash
-# Run tool tests
+# Run tool unit tests
 python test_tools.py
-python test_instruct_tool.py
+
+# Run end-to-end tests (requires Playwright)
+pip install playwright
+playwright install chromium
+python test_e2e.py
 ```
 
 ## Troubleshooting
@@ -130,16 +166,18 @@ python test_instruct_tool.py
 |-------|----------|
 | Microphone error | Allow microphone in browser settings |
 | Connection error | Ensure server is running, use `https://` |
-| Certificate warning | Click "Advanced" → "Proceed" (safe for local dev) |
+| Certificate warning | Click "Advanced" -> "Proceed" (safe for local dev) |
 | No audio output | Check browser volume and system audio |
 | Tools not working | Verify `GOOGLE_API_KEY` in `.env` |
 
-## Dependencies
+## Key Dependencies
 
-Key packages (see `requirements.txt` for full list):
 - `fastapi` - Web framework
 - `uvicorn` - ASGI server
 - `google-adk` - Google Agent Development Kit
 - `google-genai` - Gemini API client
 - `websockets` - WebSocket support
+- `httpx` / `beautifulsoup4` - Business context extraction
 - `arize-phoenix-otel` - Observability (optional)
+
+See `requirements.txt` for the complete list.
