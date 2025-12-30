@@ -198,9 +198,16 @@ class AgentToClientHandler:
         if hasattr(part, 'function_response') and part.function_response:
             fr = part.function_response
 
+            # Debug: Log the actual response structure
+            logger.info(f"DEBUG: Tool {fr.name} raw response type: {type(fr.response)}")
+            logger.info(f"DEBUG: Tool {fr.name} raw response: {fr.response}")
+
             # Log and track state
             self.state_tracker.log_tool_result(fr.name, fr.response)
             self.state_tracker.update_from_tool_result(fr.name, fr.response)
+
+            # Debug: Log the updated state
+            logger.info(f"DEBUG: State tracker state after update: {self.state_tracker.state}")
 
             # Send tool result
             message = create_tool_result_message(
