@@ -1259,7 +1259,7 @@
                         this.updateStatus('Turn complete - Ready to talk', 'connected');
                     }
                     else if (data.interrupted) {
-                        console.log('⚠️ Server confirmed interruption');
+                        console.log(' Server confirmed interruption');
                         // Immediately stop and clear audio buffer
                         this.stopAgentAudio();
                         this.addMessage('Interrupted by user', 'system');
@@ -1284,7 +1284,7 @@
                     if (!this.isAgentSpeaking) {
                         this.isAgentSpeaking = true;
                         this.agentSpeakingStartTime = Date.now();
-                        console.log('🤖 Agent started speaking - grace period active');
+                        console.log(' Agent started speaking - grace period active');
                     }
 
                     const binaryString = atob(base64Data);
@@ -1305,7 +1305,7 @@
             stopAgentAudio() {
                 // Immediately stop and clear the PCM player
                 if (this.pcmPlayer) {
-                    console.log('🛑 Stopping agent audio immediately');
+                    console.log(' Stopping agent audio immediately');
                     // Destroy and reinitialize to clear all buffers
                     this.pcmPlayer.destroy && this.pcmPlayer.destroy();
                     this.initPCMPlayer();
@@ -1394,7 +1394,7 @@
 
                     // Only trigger interruption if both conditions are met
                     if (hasEnoughFrames && hasEnoughDuration && this.isAgentSpeaking && !this.isUserSpeaking) {
-                        console.log(`🎤 Human voice detected! Score: ${voiceScore}/8, Energy: ${db.toFixed(1)}dB, ZCR: ${zcr.toFixed(3)}, Duration: ${now - this.vadStartTime}ms`);
+                        console.log(` Human voice detected! Score: ${voiceScore}/8, Energy: ${db.toFixed(1)}dB, ZCR: ${zcr.toFixed(3)}, Duration: ${now - this.vadStartTime}ms`);
                         this.isUserSpeaking = true;
 
                         // Stop agent audio immediately
@@ -1410,14 +1410,14 @@
                 } else {
                     // Not voice - reset counters
                     if (this.vadConsecutiveFrames > 0) {
-                        console.log(`🔇 Non-voice sound filtered (Score: ${voiceScore}/8, Energy: ${db.toFixed(1)}dB, ZCR: ${zcr.toFixed(3)})`);
+                        console.log(` Non-voice sound filtered (Score: ${voiceScore}/8, Energy: ${db.toFixed(1)}dB, ZCR: ${zcr.toFixed(3)})`);
                     }
                     this.resetVADCounters();
                 }
 
                 // Reset user speaking flag when silence detected
                 if (!isVoice && this.isUserSpeaking) {
-                    console.log('🔇 User stopped speaking');
+                    console.log(' User stopped speaking');
                     this.isUserSpeaking = false;
                 }
             }
