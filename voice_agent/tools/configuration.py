@@ -125,7 +125,7 @@ def get_interaction_steps(interaction_steps: List[str], tool_context: ToolContex
     message = f"Interaction steps configured with {len(cleaned_steps)} steps"
     if len(cleaned_steps) > 5:
         status = "warning"
-        message = f"⚠️ {len(cleaned_steps)} steps configured. Consider consolidating (recommended: 2-5)"
+        message = f" {len(cleaned_steps)} steps configured. Consider consolidating (recommended: 2-5)"
     
     return {
         "status": status,
@@ -173,7 +173,7 @@ def get_conversation_examples(
     message = f"{len(validated)} conversation examples saved"
     if len(validated) > MAX_CONVERSATION_EXAMPLES:
         status = "warning"
-        message = f"⚠️ {len(validated)} examples saved. Consider using 3-5 key examples."
+        message = f" {len(validated)} examples saved. Consider using 3-5 key examples."
     
     return {
         "status": status,
@@ -218,7 +218,7 @@ def get_handover_reasons(
     message = f"{len(validated)} handover reasons configured"
     if len(validated) > MAX_HANDOVER_REASONS:
         status = "warning"
-        message = f"⚠️ {len(validated)} reasons configured. Consider using 3-5 key scenarios."
+        message = f" {len(validated)} reasons configured. Consider using 3-5 key scenarios."
     
     return {
         "status": status,
@@ -245,7 +245,7 @@ def get_additional_instructions(
     message = "Additional instructions configured successfully"
     if len(cleaned) > MAX_ADDITIONAL_INSTRUCTIONS_LENGTH:
         status = "warning"
-        message = f"⚠️ Long instructions ({len(cleaned)} chars) may affect response time."
+        message = f" Long instructions ({len(cleaned)} chars) may affect response time."
     
     return {
         "status": status,
