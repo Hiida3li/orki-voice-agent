@@ -705,7 +705,7 @@
 }</div>
 
             <button id="createAgentBtn" class="btn-create" style="margin-top: 20px;">
-                ✨ Create Agent
+                Create Agent
             </button>
         </div>
     </div>
@@ -938,15 +938,15 @@
                 const exampleDiv = document.createElement('div');
                 exampleDiv.className = 'example-item';
                 exampleDiv.innerHTML = `
-                    <div class="example-header">💬 Example ${exampleNum}</div>
+                    <div class="example-header">Example ${exampleNum}</div>
                     <div class="example-message">
-                        <div class="example-label">👤 Customer Message</div>
+                        <div class="example-label">Customer Message</div>
                         <textarea class="example-input customer-msg" rows="2"
                                   placeholder="Enter customer message..."
                                   oninput="app.updateExamples()"></textarea>
                     </div>
                     <div class="example-message">
-                        <div class="example-label">🤖 Agent Response</div>
+                        <div class="example-label">Agent Response</div>
                         <textarea class="example-input agent-msg" rows="2"
                                   placeholder="Enter agent response..."
                                   oninput="app.updateExamples()"></textarea>
@@ -967,7 +967,7 @@
             updateExampleNumbers() {
                 const examples = document.querySelectorAll('#examplesContainer .example-item');
                 examples.forEach((example, index) => {
-                    example.querySelector('.example-header').textContent = `💬 Example ${index + 1}`;
+                    example.querySelector('.example-header').textContent = `Example ${index + 1}`;
                 });
             }
 
@@ -1128,7 +1128,7 @@
                                           oninput="app.updateExamples()">${example.customer_message || ''}</textarea>
                             </div>
                             <div class="example-message">
-                                <div class="example-label">🤖 Agent Response</div>
+                                <div class="example-label">Agent Response</div>
                                 <textarea class="example-input agent-msg" rows="2"
                                           oninput="app.updateExamples()">${example.agent_response || ''}</textarea>
                             </div>
