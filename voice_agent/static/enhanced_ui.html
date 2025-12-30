@@ -786,7 +786,7 @@
                 if (contextData) {
                     try {
                         this.businessContext = JSON.parse(contextData);
-                        console.log('📊 Business context loaded:', this.businessContext);
+                        console.log(' Business context loaded:', this.businessContext);
 
                         // Display business context in UI
                         document.getElementById('businessContextSection').style.display = 'block';
@@ -990,15 +990,15 @@
                 const handoverDiv = document.createElement('div');
                 handoverDiv.className = 'handover-item';
                 handoverDiv.innerHTML = `
-                    <div class="handover-header">🔄 Handover ${handoverNum}</div>
+                    <div class="handover-header">Handover ${handoverNum}</div>
                     <div class="example-message">
-                        <div class="example-label">📌 Reason</div>
+                        <div class="example-label">Reason</div>
                         <input type="text" class="example-input handover-reason"
                                placeholder="e.g., Customer Frustrated"
                                oninput="app.updateHandovers()">
                     </div>
                     <div class="example-message">
-                        <div class="example-label">ℹ️ Description</div>
+                        <div class="example-label">Description</div>
                         <textarea class="example-input handover-desc" rows="2"
                                   placeholder="e.g., When customer expresses anger"
                                   oninput="app.updateHandovers()"></textarea>
@@ -1019,7 +1019,7 @@
             updateHandoverNumbers() {
                 const handovers = document.querySelectorAll('#handoversContainer .handover-item');
                 handovers.forEach((handover, index) => {
-                    handover.querySelector('.handover-header').textContent = `🔄 Handover ${index + 1}`;
+                    handover.querySelector('.handover-header').textContent = `Handover ${index + 1}`;
                 });
             }
 
@@ -1062,7 +1062,7 @@
             }
 
             updateAgentConfig(config) {
-                console.log('📋 Updating agent config from voice:', config);
+                console.log(' Updating agent config from voice:', config);
                 this.agentConfig = {...this.agentConfig, ...config};
 
                 // Update form fields with voice data
@@ -1121,9 +1121,9 @@
                         const exampleDiv = document.createElement('div');
                         exampleDiv.className = 'example-item';
                         exampleDiv.innerHTML = `
-                            <div class="example-header">💬 Example ${index + 1}</div>
+                            <div class="example-header">Example ${index + 1}</div>
                             <div class="example-message">
-                                <div class="example-label">👤 Customer Message</div>
+                                <div class="example-label">Customer Message</div>
                                 <textarea class="example-input customer-msg" rows="2"
                                           oninput="app.updateExamples()">${example.customer_message || ''}</textarea>
                             </div>
@@ -1145,15 +1145,15 @@
                         const handoverDiv = document.createElement('div');
                         handoverDiv.className = 'handover-item';
                         handoverDiv.innerHTML = `
-                            <div class="handover-header">🔄 Handover ${index + 1}</div>
+                            <div class="handover-header">Handover ${index + 1}</div>
                             <div class="example-message">
-                                <div class="example-label">📌 Reason</div>
+                                <div class="example-label">Reason</div>
                                 <input type="text" class="example-input handover-reason"
                                        value="${handover.reason || ''}"
                                        oninput="app.updateHandovers()">
                             </div>
                             <div class="example-message">
-                                <div class="example-label">ℹ️ Description</div>
+                                <div class="example-label">Description</div>
                                 <textarea class="example-input handover-desc" rows="2"
                                           oninput="app.updateHandovers()">${handover.description || ''}</textarea>
                             </div>
@@ -1175,7 +1175,7 @@
                 const toolCallDiv = document.createElement('div');
                 toolCallDiv.className = 'tool-call-item';
 
-                const icon = result ? '✅' : '🔧';
+                const icon = result ? '[OK]' : '[...]';
 
                 toolCallDiv.innerHTML = `
                     <div class="tool-call-header">
@@ -1233,15 +1233,15 @@
                         await this.startContinuousListening();
                     }
                     else if (data.type === 'tool_call') {
-                        console.log('🔧 Tool called:', data.tool_name);
+                        console.log(' Tool called:', data.tool_name);
                         this.addToolCall(data.tool_name, data.arguments);
                     }
                     else if (data.type === 'tool_result') {
-                        console.log('✅ Tool result:', data.tool_name, data.result);
+                        console.log(' Tool result:', data.tool_name, data.result);
                         this.addToolCall(data.tool_name, {}, data.result);
                     }
                     else if (data.type === 'state_update') {
-                        console.log('🔄 State update received:', data.conversation_state);
+                        console.log(' State update received:', data.conversation_state);
                         this.updateAgentConfig(data.conversation_state);
                     }
                     else if (data.mime_type === 'text/plain') {
