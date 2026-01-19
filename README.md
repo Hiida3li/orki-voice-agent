@@ -25,13 +25,13 @@ cp .env.example .env
 
 ## Endpoints
 
-| URL | Description |
-|-----|-------------|
-| `/` | Redirects to `/business` |
-| `/business` | Business context input (start here) |
-| `/enhanced` | Voice configuration UI |
-| `/ws/{user_id}` | WebSocket connection |
-| `/health` | Health check |
+| URL             | Description                         |
+|-----------------|-------------------------------------|
+| `/`             | Redirects to `/business`            |
+| `/business`     | Business context input (start here) |
+| `/enhanced`     | Voice configuration UI              |
+| `/ws/{user_id}` | WebSocket connection                |
+| `/health`       | Health check                        |
 
 ## Project Structure
 
