@@ -141,7 +141,7 @@ The agent uses these tools to capture structured configuration:
 ```
 
 **Interruption:**
-```json
+```
 // Client sends when user speaks during AI response
 {"type": "user_speaking"}
 // Server confirms
