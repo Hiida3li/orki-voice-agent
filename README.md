@@ -74,7 +74,7 @@ voice_agent/                  # Main Python package
 ├── test_e2e.py               # End-to-end browser tests
 ├── requirements.txt          # Python dependencies
 ├── .env.example              # Environment template
-└── conversation_outputs/     # Saved conversation logs
+└── conversation_outputs/     # Saved conversation logs (clean it up)
 ```
 
 ## Environment Variables
@@ -120,7 +120,7 @@ The agent uses these tools to capture structured configuration:
 ### Audio Settings
 - Input: 16kHz mono PCM
 - Output: 24kHz mono PCM
-- Model: `gemini-2.5-flash-native-audio-latest`
+- Model: `gemini-2.5-flash-native-audio-latest` # After testing different models this one is the fastest 
 - Voice: Charon
 
 ### WebSocket Protocol
