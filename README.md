@@ -131,7 +131,7 @@ The agent uses these tools to capture structured configuration:
 ```
 
 **Server to Client (responses):**
-```json
+```
 {"mime_type": "audio/pcm", "data": "base64_audio"}
 {"mime_type": "text/plain", "data": "transcription"}
 {"type": "tool_call", "tool_name": "...", "arguments": {...}}
