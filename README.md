@@ -162,13 +162,13 @@ python test_e2e.py
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Microphone error | Allow microphone in browser settings |
-| Connection error | Ensure server is running, use `https://` |
+| Issue               | Solution                                           |
+|---------------------|----------------------------------------------------|
+| Microphone error    | Allow microphone in browser settings               |
+| Connection error    | Ensure server is running, use `https://`           |
 | Certificate warning | Click "Advanced" -> "Proceed" (safe for local dev) |
-| No audio output | Check browser volume and system audio |
-| Tools not working | Verify `GOOGLE_API_KEY` in `.env` |
+| No audio output     | Check browser volume and system audio              |
+| Tools not working   | Verify `GOOGLE_API_KEY` in `.env`                  |
 
 ## Key Dependencies
 
