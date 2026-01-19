@@ -94,18 +94,18 @@ ENABLE_PHOENIX_TRACING=true
 
 The agent uses these tools to capture structured configuration:
 
-| Tool | Purpose |
-|------|---------|
-| `get_agent_name(name)` | Set agent name |
-| `get_agent_gender(gender)` | Male or Female |
-| `get_personality(personality)` | Communication style |
-| `get_languages(languages[])` | Supported languages |
-| `get_dialect(dialect)` | Arabic dialect (if Arabic selected) |
-| `get_interaction_steps(steps[])` | Conversation workflow (2-5 steps) |
-| `get_conversation_examples(examples[])` | Brand voice examples |
-| `get_handover_reasons(reasons[])` | Human escalation triggers |
-| `get_additional_instructions(text)` | Custom behavioral rules |
-| `conversation_complete(reason)` | Signal completion |
+| Tool                                    | Purpose                             |
+|-----------------------------------------|-------------------------------------|
+| `get_agent_name(name)`                  | Set agent name                      |
+| `get_agent_gender(gender)`              | Male or Female                      |
+| `get_personality(personality)`          | Communication style                 |
+| `get_languages(languages[])`            | Supported languages                 |
+| `get_dialect(dialect)`                  | Arabic dialect (if Arabic selected) |
+| `get_interaction_steps(steps[])`        | Conversation workflow (2-5 steps)   |
+| `get_conversation_examples(examples[])` | Brand voice examples                |
+| `get_handover_reasons(reasons[])`       | Human escalation triggers           |
+| `get_additional_instructions(text)`     | Custom behavioral rules             |
+| `conversation_complete(reason)`         | Signal completion                   |
 
 ### Valid Options
 
