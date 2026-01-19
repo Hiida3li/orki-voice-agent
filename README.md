@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 # 2. Configure
 cp .env.example .env
-# Edit .env and add your GOOGLE_API_KEY
+# Edit .env and add your own GOOGLE_API_KEY
 
 # 3. Generate SSL certificates
 ./create_cert.sh
