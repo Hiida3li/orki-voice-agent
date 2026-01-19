@@ -126,7 +126,7 @@ The agent uses these tools to capture structured configuration:
 ### WebSocket Protocol
 
 **Client to Server (audio):**
-```json
+```
 {"mime_type": "audio/pcm", "data": "base64_encoded_audio"}
 ```
 
