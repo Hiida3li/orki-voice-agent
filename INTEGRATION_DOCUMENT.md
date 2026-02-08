@@ -243,6 +243,7 @@ voice_agent/
 │   └── conversation_store.py    # Conversation history & state persistence
 ```
 
+
 ### Schema (Minimum)
 
 ```sql
