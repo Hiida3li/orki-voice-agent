@@ -197,6 +197,7 @@ Twilio opens WebSocket to /ws/twilio/stream/{call_sid}
             └──> Resample to MULAW 8kHz ──> Stream back to Twilio
 ```
 
+
 ### Audio Format Conversion (Telephony)
 
 
