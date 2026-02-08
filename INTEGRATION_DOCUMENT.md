@@ -230,6 +230,7 @@ The current system saves conversation outputs as JSON files. For multi-channel p
 | Single server only            | Multi-instance ready                           |
 | No conversation history       | Full conversation history per user             |
 
+
 ### New Files Needed
 
 ```
