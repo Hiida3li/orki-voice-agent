@@ -208,6 +208,7 @@ Phone audio is **MULAW 8kHz mono**. The current system uses **PCM 16k/24k**.
 | MULAW 8k → PCM 16k   | `audioop` / `pydub` | Phone audio → Agent input  |
 | PCM 24k → MULAW 8k   | `audioop` / `pydub` | Agent output → Phone audio |
 
+
 New dependency:
 ```
 twilio>=9.0.0
