@@ -133,7 +133,7 @@ apt-get install ffmpeg
 
 ### WhatsApp Session Management
 
-Currently sessions are WebSocket-based (live connection). WhatsApp is **stateless HTTP** — each message is a separate request. You need:
+Current sessions are WebSocket-based (live connection). WhatsApp is **stateless HTTP** — each message is a separate request. You need:
 
 - **Session persistence**: Store conversation state in a database (not just in-memory)
 - **Session timeout**: Auto-expire sessions after inactivity (e.g., 30 minutes)
