@@ -199,6 +199,7 @@ Twilio opens WebSocket to /ws/twilio/stream/{call_sid}
 
 ### Audio Format Conversion (Telephony)
 
+
 Phone audio is **MULAW 8kHz mono**. The current system uses **PCM 16k/24k**.
 
 | Conversion            | Library          | Direction                    |
