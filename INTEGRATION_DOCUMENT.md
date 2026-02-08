@@ -175,6 +175,7 @@ TWILIO_WEBHOOK_URL=https://your-domain.com/webhook/twilio/voice
 | POST   | `/webhook/twilio/status`         | Call status callback                   |
 | WS     | `/ws/twilio/stream/{call_sid}`   | Twilio Media Streams WebSocket         |
 
+
 ### Phone Call Flow
 
 ```
