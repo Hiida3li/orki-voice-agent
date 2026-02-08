@@ -54,6 +54,7 @@ WhatsApp connects via the **Meta WhatsApp Business Cloud API**. This requires a 
 
 ```bash
 # WhatsApp Cloud API
+
 WHATSAPP_ACCESS_TOKEN=your_meta_access_token
 WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 WHATSAPP_VERIFY_TOKEN=your_webhook_verify_token
