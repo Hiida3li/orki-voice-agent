@@ -12,6 +12,7 @@ A browser-based voice agent that onboards MENA businesses through an 8-step conv
 
 ```
 CURRENT:
+
   Browser (mic) ──WebSocket──> FastAPI ──> Google ADK (Gemini)
                                              │
                                              └──> JSON file output
