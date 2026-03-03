@@ -341,12 +341,13 @@ WhatsApp has strict response time limits (webhook must respond in <15 seconds). 
 | AWS SQS         | If deploying to AWS          |
 
 New dependencies (if using Redis):
+
 ```
 redis>=5.0.0
 celery>=5.4.0
 ```
 
----
+
 
 ## 6. Deployment Infrastructure
 
