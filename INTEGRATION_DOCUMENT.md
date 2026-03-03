@@ -441,7 +441,7 @@ SERVER_HOST=0.0.0.0
 SERVER_PORT=8006
 BASE_URL=https://your-domain.com
 
-# ─── Phoenix Tracing (optional) ───────────────────────────
+
 PHOENIX_API_KEY=your_phoenix_key
 PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com/s/your-space
 PHOENIX_PROJECT_NAME=voice-agent-tools
