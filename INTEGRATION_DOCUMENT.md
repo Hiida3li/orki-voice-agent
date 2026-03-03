@@ -328,7 +328,7 @@ class ChannelAdapter(ChannelAdapter):
 
 This lets the existing agent logic (`core/agent.py`, `tools/`) work unchanged across all channels.
 
----
+
 
 ## 5. Message Queue (Recommended for Production)
 
