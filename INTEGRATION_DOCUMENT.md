@@ -308,7 +308,7 @@ A unified interface so the agent doesn't care which channel the message came fro
 ```python
 # voice_agent/channels/base.py
 
-class ChannelAdapter(ABC):
+class ChannelAdapter(ChannelAdapter):
     """All channels implement this interface."""
 
     @abstractmethod
