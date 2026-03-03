@@ -423,7 +423,6 @@ postgresql
 
 GOOGLE_API_KEY=your_api_key
 
-# ─── WhatsApp Cloud API ────────────────────────────────────
 WHATSAPP_ACCESS_TOKEN=your_meta_access_token
 WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 WHATSAPP_VERIFY_TOKEN=your_webhook_verify_token
