@@ -523,7 +523,6 @@ voice_agent/                              # Main Python package
 └── conversation_outputs/                 # Saved conversation logs
 ```
 
----
 
 ## Integration Step-by-Step Checklist
 
