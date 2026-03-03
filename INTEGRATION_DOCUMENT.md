@@ -571,7 +571,7 @@ voice_agent/                              # Main Python package
 - [ ] Set up logging and monitoring
 - [ ] Load test with concurrent sessions
 
----
+
 
 ## Troubleshooting (New Issues)
 
