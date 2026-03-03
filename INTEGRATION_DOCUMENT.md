@@ -296,7 +296,7 @@ asyncpg>=0.30.0          # PostgreSQL async driver
 alembic>=1.14.0           # Database migrations
 ```
 
----
+
 
 ## 4. Channel Router / Adapter Layer
 
