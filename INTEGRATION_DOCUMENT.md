@@ -448,7 +448,7 @@ PHOENIX_PROJECT_NAME=voice-agent-tools
 ENABLE_PHOENIX_TRACING=true
 ```
 
----
+
 
 ## Full Project Structure (After Integration)
 
