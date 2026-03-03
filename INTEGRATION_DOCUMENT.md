@@ -248,7 +248,7 @@ voice_agent/
 
 ### Schema (Minimum)
 
-```sql
+sql
 -- Users identified by channel + external ID
 CREATE TABLE users (
     id UUID PRIMARY KEY,
@@ -288,7 +288,7 @@ CREATE TABLE agent_configs (
     config JSONB NOT NULL,                 -- The final conversation_state
     created_at TIMESTAMP DEFAULT NOW()
 );
-```
+
 
 New dependencies:
 ```
