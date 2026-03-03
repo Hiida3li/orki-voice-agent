@@ -42,14 +42,14 @@ WhatsApp connects via the **Meta WhatsApp Business Cloud API**. This requires a 
 
 ### Accounts & Setup Required
 
-| Requirement                   | Where to Get It                                      |
-|-------------------------------|------------------------------------------------------|
-| Meta Business Account         | https://business.facebook.com                        |
-| WhatsApp Business App         | https://developers.facebook.com/apps                 |
-| WhatsApp Business Phone Number| Provisioned via Meta Business Manager                |
-| Cloud API Access Token        | Meta Developer Dashboard → WhatsApp → API Setup      |
-| Webhook Verify Token          | You create this (any random string)                  |
-| Public HTTPS URL              | ngrok (dev) or production domain                     |
+| Requirement                    | Where to Get It                                 |
+|--------------------------------|-------------------------------------------------|
+| Meta Business Account          | https://business.facebook.com                   |
+| WhatsApp Business App          | https://developers.facebook.com/apps            |
+| WhatsApp Business Phone Number | Provisioned via Meta Business Manager           |
+| Cloud API Access Token         | Meta Developer Dashboard → WhatsApp → API Setup |
+| Webhook Verify Token           | You create this (any random string)             |
+| Public HTTPS URL               | ngrok (dev) or production domain                |
 
 ### New Environment Variables
 
