@@ -436,7 +436,7 @@ DATABASE_URL=postgresql+asyncpg://user:pass@localhost:5432/orki
 
 REDIS_URL=redis://localhost:6379/0
 
-# ─── Server ────────────────────────────────────────────────
+
 SERVER_HOST=0.0.0.0
 SERVER_PORT=8006
 BASE_URL=https://your-domain.com
