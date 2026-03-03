@@ -289,7 +289,6 @@ CREATE TABLE agent_configs (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-
 New dependencies:
 ```
 sqlalchemy>=2.0.0
