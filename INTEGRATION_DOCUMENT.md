@@ -113,10 +113,10 @@ Incoming WhatsApp Message
 
 WhatsApp uses **OGG Opus** for voice notes. The current system uses **raw PCM**. You need:
 
-| Conversion          | Library        | Direction                        |
-|---------------------|----------------|----------------------------------|
-| OGG Opus → PCM 16k  | `pydub` + `ffmpeg` | WhatsApp voice note → Agent input |
-| PCM 24k → OGG Opus  | `pydub` + `ffmpeg` | Agent output → WhatsApp voice note|
+| Conversion         | Library            | Direction                          |
+|--------------------|--------------------|------------------------------------|
+| OGG Opus → PCM 16k | `pydub` + `ffmpeg` | WhatsApp voice note → Agent input  |
+| PCM 24k → OGG Opus | `pydub` + `ffmpeg` | Agent output → WhatsApp voice note |
 
 New dependency:
 ```
