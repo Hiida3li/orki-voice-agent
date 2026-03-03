@@ -420,7 +420,7 @@ postgresql
 ## 8. Updated Environment Variables (Full)
 
 ```bash
-# ─── Required ───────────────────────────────────────────────
+
 GOOGLE_API_KEY=your_api_key
 
 # ─── WhatsApp Cloud API ────────────────────────────────────
