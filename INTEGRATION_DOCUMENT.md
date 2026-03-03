@@ -434,7 +434,6 @@ TWILIO_PHONE_NUMBER=+1234567890
 
 DATABASE_URL=postgresql+asyncpg://user:pass@localhost:5432/orki
 
-# ─── Redis (optional) ─────────────────────────────────────
 REDIS_URL=redis://localhost:6379/0
 
 # ─── Server ────────────────────────────────────────────────
