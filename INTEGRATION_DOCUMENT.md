@@ -416,7 +416,6 @@ ffmpeg
 postgresql
 ```
 
----
 
 ## 8. Updated Environment Variables (Full)
 
