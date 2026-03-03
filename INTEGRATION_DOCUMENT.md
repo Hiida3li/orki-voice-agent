@@ -581,9 +581,9 @@ voice_agent/                              # Main Python package
 
 ## Troubleshooting (New Issues)
 
-| Issue                    | Solution                                           |
-|--------------------------|----------------------------------------------------|
-| WhatsApp not receiving   | Check ngrok is running and webhook URL is correct  |
-| Twilio call drops        | Verify TwiML `<Stream>` URL matches your server    |
-| Audio garbled            | Check ffmpeg is installed for format conversion    |
-| Database errors          | Verify `DATABASE_URL` and run `alembic upgrade head` |
+| Issue                  | Solution                                             |
+|------------------------|------------------------------------------------------|
+| WhatsApp not receiving | Check ngrok is running and webhook URL is correct    |
+| Twilio call drops      | Verify TwiML `<Stream>` URL matches your server      |
+| Audio garbled          | Check ffmpeg is installed for format conversion      |
+| Database errors        | Verify `DATABASE_URL` and run `alembic upgrade head` |
