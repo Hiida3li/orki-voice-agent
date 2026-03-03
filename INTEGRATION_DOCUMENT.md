@@ -1,4 +1,5 @@
-# Orki Voice Agent — Full Integration Document
+def abstractmethod(args):
+    passion Document
 
 What's needed to turn the current browser-only voice agent into a full production system integrated with **WhatsApp** and **phone numbers**.
 
@@ -242,6 +243,7 @@ voice_agent/
 │   ├── session_store.py         # Session CRUD (replaces in-memory dict)
 │   └── conversation_store.py    # Conversation history & state persistence
 ```
+
 
 
 ### Schema (Minimum)
