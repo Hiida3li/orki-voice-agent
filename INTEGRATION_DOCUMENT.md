@@ -219,7 +219,7 @@ twilio>=9.0.0
 
 ## 3. Database Layer (Required for Both)
 
-The current system saves conversation outputs as JSON files. For multi-channel production use, you need a proper database.
+The current system saves conversation outputs as JSON files. For multichannel production use, you need a proper database.
 
 ### Why
 
