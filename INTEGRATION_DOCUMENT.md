@@ -428,7 +428,6 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 WHATSAPP_VERIFY_TOKEN=your_webhook_verify_token
 WHATSAPP_BUSINESS_ACCOUNT_ID=your_business_account_id
 
-# ─── Twilio Voice ──────────────────────────────────────────
 TWILIO_ACCOUNT_SID=your_account_sid
 TWILIO_AUTH_TOKEN=your_auth_token
 TWILIO_PHONE_NUMBER=+1234567890
