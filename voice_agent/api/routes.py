@@ -30,7 +30,6 @@ api_router = APIRouter(prefix="/api")
 
 
 # HTML Routes
-
 @main_router.get("/")
 async def root():
     """Redirect to business context page (starting point of the flow)."""
