@@ -113,6 +113,7 @@ async def websocket_endpoint(
     # Convert is_audio string to boolean
     audio_enabled = is_audio.lower() == "true"
 
+
     # Decode business context if provided
     business_context_data = decode_business_context(business_context)
     if business_context_data:
