@@ -43,7 +43,7 @@ async def test_business_context_page():
 
         # Test redirect from root to /business
         response = await page.goto(BASE_URL)
-        await page.wait_for_load_state("networkidle")
+        await page.wait_for_load_state("networking")
         assert "/business" in page.url, f"Expected redirect to /business, got {page.url}"
         print("  Root redirect to /business: OK")
 
