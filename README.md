@@ -1,10 +1,10 @@
-# Lahjat Voice Agent
+# Orki Voice Agent
 
 > Build AI voice agents through natural conversation.
 
 ## What is This?
 
-Lahjat Voice Agent is an agent that demonstrates how businesses can configure their AI customer service agents through a simple voice conversation instead of filling out complex forms.
+Orki Voice Agent is an agent that demonstrates how businesses can configure their AI customer service agents through a simple voice conversation instead of filling out complex forms.
 
 **The idea**: Instead of clicking through settings and typing configurations, you simply *talk* to an AI that guides you through the setup process - just like having a conversation with a colleague.
 
@@ -84,8 +84,8 @@ This POC demonstrates a pattern that can be applied to many industries:
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/lahjat-voice-agent.git
-cd lahjat-voice-agent
+git clone https://github.com/yourusername/orki-voice-agent.git
+cd orki-voice-agent
 
 # Setup environment
 python -m venv venv
