@@ -82,7 +82,8 @@ voice_agent/                  # Main Python package
 ```bash
 # Required
 GOOGLE_API_KEY=your_api_key          # From https://aistudio.google.com/apikey
-
+or 
+OPENAI_API_KEY=your_api_key  # From https://platform.openai.com/api-keys
 # Optional (Phoenix tracing)
 PHOENIX_API_KEY=your_phoenix_key
 PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com/s/your-space
