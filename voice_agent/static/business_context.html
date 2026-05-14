@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Business Context - AI Agent Creator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #201f27;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: #2c435e;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 32px;
+            text-align: center;
+        }
+        .subtitle {
+            color: #a0aec0;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        .info-box {
+            background: #1a2332;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4c8bca;
+        }
+        .info-box h3 {
+            color: #4c8bca;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .info-box p {
+            color: #a0aec0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .info-box ul {
+            margin-top: 10px;
+            margin-left: 20px;
+            color: #a0aec0;
+            font-size: 14px;
+        }
+        .info-box li {
+            margin: 5px 0;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .required {
+            color: #dc3545;
+        }
+        .optional {
+            color: #a0aec0;
+            font-weight: 400;
+            font-size: 12px;
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #3d5a80;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a2332;
+            color: #ffffff;
+        }
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #4c8bca;
+            box-shadow: 0 0 0 4px rgba(76, 139, 202, 0.2);
+        }
+        input[type="url"]::placeholder {
+            color: #6c7a89;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+        }
+        button {
+            padding: 16px 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 250px;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-primary {
+            background: #4c8bca;
+            color: white;
+        }
+        .status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 500;
+            display: none;
+        }
+        .status.loading {
+            display: block;
+            background: #1a3a5c;
+            color: #4c8bca;
+        }
+        .status.error {
+            display: block;
+            background: #4a1c1c;
+            color: #e57373;
+        }
+        .status.success {
+            display: block;
+            background: #1e4620;
+            color: #a3d9a5;
+        }
+        .loading-spinner {
+            border: 3px solid #3d5a80;
+            border-top: 3px solid #4c8bca;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .preview-box {
+            background: #1a2332;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+        .preview-box.show {
+            display: block;
+        }
+        .preview-box h3 {
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .preview-item {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #2c435e;
+            border-radius: 8px;
+        }
+        .preview-label {
+            font-weight: 600;
+            color: #4c8bca;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .preview-value {
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Agent Creator</h1>
+        <div class="subtitle">Let's start by understanding your business</div>
+
+        <div class="info-box">
+            <h3>What we'll extract from your website:</h3>
+            <ul>
+                <li>Company name</li>
+                <li>Business description</li>
+                <li>Frequently Asked Questions (if available)</li>
+            </ul>
+            <p style="margin-top: 15px; font-style: italic; font-size: 13px;">
+                This helps create a smarter AI agent tailored to your business!
+            </p>
+        </div>
+
+        <form id="businessForm">
+            <div class="form-group">
+                <label>
+                    Website URL <span class="optional">(Optional)</span>
+                </label>
+                <input
+                    type="url"
+                    id="websiteUrl"
+                    placeholder="https://www.example.com"
+                >
+            </div>
+
+            <div class="status" id="status"></div>
+
+            <div class="preview-box" id="previewBox">
+                <h3>Extracted Business Context</h3>
+                <div class="preview-item">
+                    <div class="preview-label">Company Name</div>
+                    <div class="preview-value" id="previewCompany">-</div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-label">Description</div>
+                    <div class="preview-value" id="previewDescription">-</div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-label">FAQs Found</div>
+                    <div class="preview-value" id="previewFaqs">-</div>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn-primary" id="continueBtn">
+                    Continue to Voice Agent
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        class BusinessContextCollector {
+            constructor() {
+                this.form = document.getElementById('businessForm');
+                this.websiteInput = document.getElementById('websiteUrl');
+                this.statusEl = document.getElementById('status');
+                this.continueBtn = document.getElementById('continueBtn');
+                this.previewBox = document.getElementById('previewBox');
+                this.businessContext = null;
+
+                this.initEventListeners();
+            }
+
+            initEventListeners() {
+                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+
+                // If business context already fetched, proceed to voice chat
+                if (this.businessContext) {
+                    this.proceedToVoiceChat();
+                    return;
+                }
+
+                const websiteUrl = this.websiteInput.value.trim();
+
+                // If no URL provided, just proceed without context
+                if (!websiteUrl) {
+                    this.proceedToVoiceChat();
+                    return;
+                }
+
+                // Validate URL format
+                try {
+                    new URL(websiteUrl);
+                } catch (error) {
+                    this.showStatus('Please enter a valid website URL', 'error');
+                    return;
+                }
+
+                await this.fetchBusinessContext(websiteUrl);
+            }
+
+            async fetchBusinessContext(websiteUrl) {
+                this.showStatus('Fetching business information...', 'loading');
+                this.continueBtn.disabled = true;
+
+                try {
+                    const response = await fetch('/api/extract-business-context', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            website_url: websiteUrl
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch business context');
+                    }
+
+                    const data = await response.json();
+                    this.businessContext = data;
+
+                    this.showStatus('Business context extracted successfully!', 'success');
+                    this.showPreview(data);
+                    this.continueBtn.textContent = 'Start Voice Configuration';
+
+                } catch (error) {
+                    console.error('Error fetching business context:', error);
+                    this.showStatus('Could not fetch business context. Click continue to proceed anyway.', 'error');
+                } finally {
+                    this.continueBtn.disabled = false;
+                }
+            }
+
+            showPreview(data) {
+                document.getElementById('previewCompany').textContent =
+                    data.company_name || 'Not found';
+
+                document.getElementById('previewDescription').textContent =
+                    data.description || 'Not found';
+
+                const faqCount = data.faqs ? data.faqs.length : 0;
+                document.getElementById('previewFaqs').textContent =
+                    faqCount > 0 ? `${faqCount} FAQs found` : 'No FAQs found';
+
+                this.previewBox.classList.add('show');
+            }
+
+            showStatus(message, type) {
+                this.statusEl.textContent = message;
+                this.statusEl.className = `status ${type}`;
+
+                if (type === 'loading') {
+                    const spinner = document.createElement('div');
+                    spinner.className = 'loading-spinner';
+                    this.statusEl.prepend(spinner);
+                }
+            }
+
+            proceedToVoiceChat() {
+                // Store business context in sessionStorage if available
+                if (this.businessContext) {
+                    sessionStorage.setItem('businessContext', JSON.stringify(this.businessContext));
+                }
+                window.location.href = '/enhanced';
+            }
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            new BusinessContextCollector();
+        });
+    </script>
+</body>
+</html>
