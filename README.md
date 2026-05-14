@@ -1,4 +1,4 @@
-# Orki Voice Agent
+# Lahjat Voice Agent
 
 Real-time voice interface for configuring AI customer service voice agents.
 
