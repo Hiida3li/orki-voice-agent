@@ -1,184 +1,166 @@
 # Lahjat Voice Agent
 
-Real-time voice interface for configuring AI customer service voice agents.
+> Build AI voice agents through natural conversation.
+
+## What is This?
+
+Lahjat Voice Agent is an agent that demonstrates how businesses can configure their AI customer service agents through a simple voice conversation instead of filling out complex forms.
+
+**The idea**: Instead of clicking through settings and typing configurations, you simply *talk* to an AI that guides you through the setup process - just like having a conversation with a colleague.
+
+## The Problem We're Solving
+
+Setting up AI agents typically requires:
+- Filling out lengthy forms
+- Understanding technical jargon
+- Multiple back-and-forth with support teams
+- Time-consuming configuration processes
+
+**Our approach**: Have a friendly AI assistant guide you through the entire setup via voice conversation in your preferred language and dialect.
+
+## Use Cases
+
+This POC demonstrates a pattern that can be applied to many industries:
+
+### Call Centers
+- Configure customer service bots through voice
+- Set up IVR flows by describing them naturally
+- Train agents on brand voice by giving examples verbally
+
+### Customer Support
+- Create support agents that match your company's tone
+- Define escalation triggers conversationally
+- Set up multilingual support with dialect preferences
+
+### Sales Teams
+- Build sales qualification bots through conversation
+- Define lead scoring criteria naturally
+- Configure follow-up workflows verbally
+
+### Healthcare
+- Set up appointment booking assistants
+- Configure patient intake flows
+- Define triage protocols conversationally
+
+### Hospitality
+- Create booking agents with specific personality
+- Set up FAQ responses through examples
+- Configure multilingual concierge services
+
+## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  1. Enter your website URL                                  │
+│     (AI extracts your business context automatically)       │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  2. Have a voice conversation                               │
+│     - AI greets you and asks questions one by one           │
+│     - Speaks in your language/dialect                       │
+│     - You see configuration building in real-time           │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  3. Get your configured agent                               │
+│     - Name, personality, language settings                  │
+│     - Conversation flow defined                             │
+│     - Brand voice examples captured                         │
+│     - Handover triggers set                                 │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Key Features
+
+- **Voice-to-Voice**: Full duplex audio conversation with the AI
+- **Dialect Support**: Supports Gulf Arabic dialects (Omani, Saudi, Emirati, etc.)
+- **Real-time UI**: See your configuration build as you speak
+- **Business Context**: Automatically extracts info from your website
+- **Interruption Handling**: Natural conversation flow - interrupt anytime
+- **Multi-language**: English, Arabic, Hindi, Urdu
 
 ## Quick Start
 
 ```bash
-# 1. Setup
+# Clone the repo
+git clone https://github.com/yourusername/lahjat-voice-agent.git
+cd lahjat-voice-agent
+
+# Setup environment
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# 2. Configure
+# Configure
 cp .env.example .env
-# Edit .env and add your own GOOGLE_API_KEY
+# Add your GOOGLE_API_KEY to .env
 
-# 3. Generate SSL certificates
-./create_cert.sh
-
-# 4. Run
-./start.sh
-# Or: python -m voice_agent
-# Server starts at https://localhost:8006
+# Run
+python -m voice_agent
+# Open http://localhost:8000
 ```
 
-## Endpoints
+## Configuration Options
 
-| URL             | Description                         |
-|-----------------|-------------------------------------|
-| `/`             | Redirects to `/business`            |
-| `/business`     | Business context input (start here) |
-| `/enhanced`     | Voice configuration UI              |
-| `/ws/{user_id}` | WebSocket connection                |
-| `/health`       | Health check                        |
+The AI collects these settings through conversation:
 
-## Project Structure
+| Setting | Description |
+|---------|-------------|
+| **Agent Name** | What to call your AI agent |
+| **Personality** | Friendly, Professional, Casual, etc. |
+| **Languages** | Which languages to support |
+| **Dialect** | Specific Arabic dialect (Gulf region) |
+| **Conversation Flow** | Steps your agent should follow |
+| **Brand Examples** | Sample conversations for tone matching |
+| **Handover Triggers** | When to transfer to human |
 
-```
-voice_agent/                  # Main Python package
-├── __init__.py
-├── __main__.py               # Entry point for python -m voice_agent
-├── main.py                   # FastAPI app factory
-├── api/                      # HTTP API layer
-│   ├── models.py             # Pydantic request/response models
-│   └── routes.py             # API endpoints
-├── business/                 # Business context extraction
-│   ├── extractor.py          # Website scraping & parsing
-│   └── models.py             # Business data models
-├── config/                   # Configuration
-│   ├── agent_instructions.py # Agent prompt templates
-│   ├── observability.py      # Phoenix tracing setup
-│   └── settings.py           # Environment variables
-├── core/                     # Core agent logic
-│   ├── agent.py              # Agent factory
-│   ├── session.py            # Session management
-│   └── state.py              # Conversation state
-├── static/                   # Frontend files
-│   ├── business_context.html # Business input page
-│   └── enhanced_ui.html      # Voice configuration UI
-├── tools/                    # Agent tools
-│   ├── base.py               # Base validators & helpers
-│   ├── configuration.py      # Configuration tool implementations
-│   ├── constants.py          # Valid options & limits
-│   └── registry.py           # Tool registration
-└── websocket/                # WebSocket handling
-    ├── handlers.py           # Connection lifecycle
-    ├── messaging.py          # Bidirectional message routing
-    └── protocol.py           # Message types & encoding
+## Tech Stack
 
-# Root files
-├── start.sh                  # Server startup script
-├── create_cert.sh            # SSL certificate generator
-├── test_tools.py             # Tool unit tests
-├── test_e2e.py               # End-to-end browser tests
-├── requirements.txt          # Python dependencies
-├── .env.example              # Environment template
-└── conversation_outputs/     # Saved conversation logs (clean it up)
-```
+- **Backend**: FastAPI + Python
+- **AI**: Google Gemini 2.5 Flash (Native Audio)
+- **Real-time**: WebSockets
+- **Frontend**: Vanilla HTML/JS
 
-## Environment Variables
+## Adapting for Your Use Case
 
-```bash
-# Required
-GOOGLE_API_KEY=your_api_key          # From https://aistudio.google.com/apikey
-or 
-OPENAI_API_KEY=your_api_key  # From https://platform.openai.com/api-keys
-# Optional (Phoenix tracing)
-PHOENIX_API_KEY=your_phoenix_key
-PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com/s/your-space
-PHOENIX_PROJECT_NAME=voice-agent-tools
-ENABLE_PHOENIX_TRACING=true
-```
+This POC can be adapted for any scenario where you need to:
 
-## Configuration Tools
+1. **Collect structured data** through conversation
+2. **Configure complex systems** without technical UI
+3. **Onboard users** in their native language/dialect
+4. **Create personalized experiences** based on verbal input
 
-The agent uses these tools to capture structured configuration:
+### To customize:
+1. Modify `config/agent_instructions.py` - Change the conversation flow
+2. Update `tools/constants.py` - Add your own valid options
+3. Edit `tools/configuration.py` - Add new data collection tools
 
-| Tool                                    | Purpose                             |
-|-----------------------------------------|-------------------------------------|
-| `get_agent_name(name)`                  | Set agent name                      |
-| `get_agent_gender(gender)`              | Male or Female                      |
-| `get_personality(personality)`          | Communication style                 |
-| `get_languages(languages[])`            | Supported languages                 |
-| `get_dialect(dialect)`                  | Arabic dialect (if Arabic selected) |
-| `get_interaction_steps(steps[])`        | Conversation workflow (2-5 steps)   |
-| `get_conversation_examples(examples[])` | Brand voice examples                |
-| `get_handover_reasons(reasons[])`       | Human escalation triggers           |
-| `get_additional_instructions(text)`     | Custom behavioral rules             |
-| `conversation_complete(reason)`         | Signal completion                   |
+## Roadmap
 
-### Valid Options
+- [ ] More Arabic dialect support (Egyptian, Levantine)
+- [ ] Voice cloning for brand consistency
+- [ ] Integration with popular CRM/helpdesk platforms
+- [ ] Multi-turn conversation memory
+- [ ] Export to various agent platforms
 
-**Personalities:** Empathetic and Friendly, Formal and Professional, Salesperson, Fun and Humorous, Casual and Down-To-Earth
+## Contributing
 
-**Languages:** English, Arabic, Hindi, Urdu
+This is a POC - contributions welcome! Areas that need work:
 
-**Arabic Dialects:** Omani, Saudi, Bahraini, Kuwaiti, Qatari, Emirati, Fusha (MSA)
+- **Voice Quality**: Better Arabic/Gulf accent support
+- **Dialect Authenticity**: Native expressions and greetings
+- **Integration**: Connect to real agent platforms
+- **Testing**: More comprehensive test coverage
 
-## Technical Details
+## Documentation
 
-### Audio Settings
-- Input: 16kHz mono PCM
-- Output: 24kHz mono PCM
-- Model: `gemini-2.5-flash-native-audio-latest` # After testing different models this one is the fastest
-- Voice: Charon
+For technical implementation details, see [TECHNICAL_DOCS.md](./TECHNICAL_DOCS.md)
 
-### WebSocket Protocol
+## License
 
-**Client to Server (audio):**
-```
-{"mime_type": "audio/pcm", "data": "base64_encoded_audio"}
-```
+MIT
 
-**Server to Client (responses):**
-```
-{"mime_type": "audio/pcm", "data": "base64_audio"}
-{"mime_type": "text/plain", "data": "transcription"}
-{"type": "tool_call", "tool_name": "...", "arguments": {...}}
-{"type": "tool_result", "tool_name": "...", "result": {...}}
-{"type": "state_update", "conversation_state": {...}}
-{"turn_complete": true}
-```
+---
 
-**Interruption:**
-```
-// Client sends when user speaks during AI response
-{"type": "user_speaking"}
-// Server confirms
-{"interrupted": true}
-```
-
-## Testing
-
-```bash
-# Run tool unit tests
-python test_tools.py
-
-# Run end-to-end tests (requires Playwright)
-pip install playwright
-playwright install chromium
-python test_e2e.py
-```
-
-## Troubleshooting
-
-| Issue               | Solution                                           |
-|---------------------|----------------------------------------------------|
-| Microphone error    | Allow microphone in browser settings               |
-| Connection error    | Ensure server is running, use `https://`           |
-| Certificate warning | Click "Advanced" -> "Proceed" (safe for local dev) |
-| No audio output     | Check browser volume and system audio              |
-| Tools not working   | Verify `GOOGLE_API_KEY` in `.env`                  |
-
-## Key Dependencies
-
-- `fastapi` - Web framework
-- `uvicorn` - ASGI server
-- `google-adk` - Google Agent Development Kit
-- `google-genai` - Gemini API client
-- `websockets` - WebSocket support
-- `httpx` / `beautifulsoup4` - Business context extraction
-- `arize-phoenix-otel` - Observability (optional)
-
-See `requirements.txt` for the complete list.
+**Built with Google ADK and Gemini** | Focused on MENA region businesses
