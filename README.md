@@ -1,6 +1,6 @@
 # Orki Voice Agent
 
-Real-time voice interface for configuring AI customer service agents using Google ADK and Gemini.
+Real-time voice interface for configuring AI customer service voice agents.
 
 ## Quick Start
 
