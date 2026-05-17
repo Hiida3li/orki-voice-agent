@@ -4,11 +4,9 @@ python-dotenv>=1.1.0
 pydantic>=2.11.0
 starlette>=0.48.0
 
-# Google ADK for AI agent development kit
 google-adk>=1.15.0
 google-genai>=1.40.0
 
-# Phoenix observability (tracing)
 arize-phoenix-otel>=0.13.0
 openinference-instrumentation-google-adk>=0.1.5
 opentelemetry-api>=1.37.0
