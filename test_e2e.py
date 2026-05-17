@@ -1,5 +1,5 @@
 """
-End-to-end tests for Voice Agent using Playwright headless browser.
+End-to-end tests for Voice Agent
 Tests all main pages and API endpoints.
 """
 
@@ -153,7 +153,6 @@ async def test_enhanced_ui_interactions():
             await arabic_chip.click()
             print("  Selected Arabic language")
 
-            # Check if dialect field appears
             await page.wait_for_timeout(500)
             dialect_field = await page.query_selector('#dialectField')
             if dialect_field:
