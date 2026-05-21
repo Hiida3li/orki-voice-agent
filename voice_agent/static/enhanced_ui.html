@@ -1531,9 +1531,11 @@
                 if (this.isRecording) return;
 
                 try {
+                    // Don't pin sampleRate on getUserMedia — Chrome ignores it on most hardware
+                    // anyway and combining it with a non-native AudioContext sample rate
+                    // makes ScriptProcessorNode misbehave (silent / no callbacks) in Chrome.
                     const stream = await navigator.mediaDevices.getUserMedia({
                         audio: {
-                            sampleRate: 16000,
                             channelCount: 1,
                             echoCancellation: true,
                             noiseSuppression: true,
@@ -1541,44 +1543,70 @@
                         }
                     });
 
-                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+                    // Let the AudioContext run at the device's native rate (typically 48000
+                    // on Chrome/macOS). We downsample to 16000 in JS before sending.
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const inputSampleRate = this.audioContext.sampleRate;
+                    const targetSampleRate = 16000;
+                    const downsampleRatio = inputSampleRate / targetSampleRate;
+                    console.log(`[audio] AudioContext rate=${inputSampleRate}, target=${targetSampleRate}, ratio=${downsampleRatio.toFixed(3)}`);
 
-                    // Chrome creates AudioContexts in "suspended" state when not made
-                    // directly inside a click handler. ScriptProcessorNode connected to a
-                    // suspended context never fires onaudioprocess, so the mic appears dead.
-                    // Safari is lenient and doesn't need this. Resume explicitly.
                     if (this.audioContext.state === 'suspended') {
                         await this.audioContext.resume();
+                        console.log('[audio] AudioContext resumed, state=', this.audioContext.state);
                     }
 
                     const source = this.audioContext.createMediaStreamSource(stream);
                     const processor = this.audioContext.createScriptProcessor(4096, 1, 1);
 
+                    let frameCount = 0;
+                    let lastLogTime = Date.now();
+
                     processor.onaudioprocess = (e) => {
-                        if (!this.isConnected) return;
+                        if (!this.isConnected || !this.ws || this.ws.readyState !== WebSocket.OPEN) return;
 
                         const inputData = e.inputBuffer.getChannelData(0);
 
-                        // Voice Activity Detection - detect if user is speaking
-                        this.detectVoiceActivity(inputData);
+                        // Downsample to 16 kHz via simple decimation with averaging
+                        const outLen = Math.floor(inputData.length / downsampleRatio);
+                        const downsampled = new Float32Array(outLen);
+                        for (let i = 0; i < outLen; i++) {
+                            const start = Math.floor(i * downsampleRatio);
+                            const end = Math.floor((i + 1) * downsampleRatio);
+                            let sum = 0;
+                            for (let j = start; j < end; j++) sum += inputData[j];
+                            downsampled[i] = sum / (end - start);
+                        }
 
-                        const pcmData = new Int16Array(inputData.length);
-                        for (let i = 0; i < inputData.length; i++) {
-                            const s = Math.max(-1, Math.min(1, inputData[i]));
+                        // VAD runs on the downsampled (16 kHz) buffer to match its tuning
+                        this.detectVoiceActivity(downsampled);
+
+                        const pcmData = new Int16Array(downsampled.length);
+                        for (let i = 0; i < downsampled.length; i++) {
+                            const s = Math.max(-1, Math.min(1, downsampled[i]));
                             pcmData[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
                         }
 
-                        const buffer = new ArrayBuffer(pcmData.length * 2);
-                        const view = new DataView(buffer);
+                        // Energy check for diagnostic logging only
+                        let peak = 0;
                         for (let i = 0; i < pcmData.length; i++) {
-                            view.setInt16(i * 2, pcmData[i], true);
+                            const v = Math.abs(pcmData[i]);
+                            if (v > peak) peak = v;
                         }
 
-                        const base64Audio = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+                        const base64Audio = btoa(String.fromCharCode(...new Uint8Array(pcmData.buffer)));
                         this.ws.send(JSON.stringify({
                             mime_type: 'audio/pcm',
                             data: base64Audio
                         }));
+
+                        frameCount++;
+                        const now = Date.now();
+                        if (now - lastLogTime > 2000) {
+                            console.log(`[audio] sent ${frameCount} frames in last ${now - lastLogTime}ms, last peak=${peak}, ctx.state=${this.audioContext.state}`);
+                            frameCount = 0;
+                            lastLogTime = now;
+                        }
                     };
 
                     source.connect(processor);
