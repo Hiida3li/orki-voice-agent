@@ -1197,6 +1197,14 @@
                     flushingTime: 200  // Very low latency (200ms) for instant interruption
                 });
                 this.pcmPlayer.volume = this.currentVolume;
+
+                // Chrome leaves AudioContexts created outside a direct click handler in
+                // "suspended" state (autoplay policy). pcm-player creates its own context,
+                // so resume it explicitly or no audio will ever play in Chrome.
+                const ctx = this.pcmPlayer.audioCtx;
+                if (ctx && ctx.state === 'suspended') {
+                    ctx.resume().catch(err => console.warn('PCMPlayer resume failed:', err));
+                }
             }
 
             async startSession() {
@@ -1534,6 +1542,15 @@
                     });
 
                     this.audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+
+                    // Chrome creates AudioContexts in "suspended" state when not made
+                    // directly inside a click handler. ScriptProcessorNode connected to a
+                    // suspended context never fires onaudioprocess, so the mic appears dead.
+                    // Safari is lenient and doesn't need this. Resume explicitly.
+                    if (this.audioContext.state === 'suspended') {
+                        await this.audioContext.resume();
+                    }
+
                     const source = this.audioContext.createMediaStreamSource(stream);
                     const processor = this.audioContext.createScriptProcessor(4096, 1, 1);
 
