@@ -51,11 +51,11 @@ def create_app() -> FastAPI:
         allow_headers=settings.cors_headers,
     )
 
-    # Include routers
+
     app.include_router(main_router)
     app.include_router(api_router)
 
-    # Log startup info
+
     logger.info("Initializing agent with tools...")
     tools = tool_registry.get_all()
     logger.info(f"Number of tools: {len(tools)}")

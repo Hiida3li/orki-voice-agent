@@ -42,7 +42,7 @@ from .registry import (
 
 
 __all__ = [
-    # Constants
+
     'VALID_PERSONALITIES',
     'VALID_LANGUAGES',
     'VALID_DIALECTS',
@@ -51,13 +51,13 @@ __all__ = [
     'MAX_CONVERSATION_EXAMPLES',
     'MAX_HANDOVER_REASONS',
     'MAX_ADDITIONAL_INSTRUCTIONS_LENGTH',
-    # Base classes
+
     'ValidationResult',
     'ToolValidator',
     'StateUpdater',
     'create_success_response',
     'create_error_response',
-    # Tools
+
     'get_agent_name',
     'get_agent_gender',
     'get_personality',
@@ -68,7 +68,7 @@ __all__ = [
     'get_handover_reasons',
     'get_additional_instructions',
     'conversation_complete',
-    # Registry
+
     'ToolRegistry',
     'tool_registry',
     'get_tool_declarations',

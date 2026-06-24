@@ -79,6 +79,6 @@ def setup_logging(level: int = logging.INFO) -> logging.Logger:
     return logging.getLogger(__name__)
 
 
-# Global settings instance
+
 settings = Settings()
 logger = setup_logging()

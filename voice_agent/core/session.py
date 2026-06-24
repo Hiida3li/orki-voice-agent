@@ -195,5 +195,5 @@ class SessionManager:
         return self._sessions.copy()
 
 
-# Default session manager instance
+
 session_manager = SessionManager()

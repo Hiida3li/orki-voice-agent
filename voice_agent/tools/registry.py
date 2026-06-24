@@ -250,5 +250,5 @@ def get_tool_declarations() -> List[types.FunctionDeclaration]:
     ]
 
 
-# Default registry instance
+
 tool_registry = ToolRegistry()

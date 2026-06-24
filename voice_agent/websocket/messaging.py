@@ -324,5 +324,5 @@ class ClientToAgentHandler:
             logger.info("Interruption flag set - stopping audio output")
 
         elif msg_type == "ping":
-            # Keepalive ping
+
             await self.safe_ws.send_json(create_pong_message())
