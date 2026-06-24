@@ -29,14 +29,14 @@ def setup_phoenix_tracing() -> Optional[object]:
         PHOENIX_COLLECTOR_ENDPOINT: Your Phoenix collector endpoint
         PHOENIX_PROJECT_NAME: (Optional) Project name for organizing traces
     """
-    # Check if Phoenix tracing is enabled
+
     enable_tracing = os.getenv("ENABLE_PHOENIX_TRACING", "false").lower() == "true"
 
     if not enable_tracing:
         logger.info("Phoenix tracing is disabled. Set ENABLE_PHOENIX_TRACING=true to enable.")
         return None
 
-    # Check for required credentials
+
     api_key = os.getenv("PHOENIX_API_KEY")
     collector_endpoint = os.getenv("PHOENIX_COLLECTOR_ENDPOINT")
 
@@ -48,7 +48,7 @@ def setup_phoenix_tracing() -> Optional[object]:
         )
         return None
 
-    # Validate credentials are not empty
+
     if not api_key.strip() or not collector_endpoint.strip():
         logger.warning(
             "Phoenix credentials are empty. Please add valid values to .env file. "
@@ -67,24 +67,20 @@ def setup_phoenix_tracing() -> Optional[object]:
         os.environ["PHOENIX_API_KEY"] = api_key
         os.environ["PHOENIX_COLLECTOR_ENDPOINT"] = collector_endpoint
 
-        # Check if we need to set the API key as a header (for older Phoenix Cloud instances)
-        # If your Phoenix Cloud instance was created before June 24th, 2025, uncomment this:
-        # os.environ["PHOENIX_CLIENT_HEADERS"] = f"api_key={api_key}"
 
         logger.info(f"Initializing Phoenix tracing for project: {project_name}")
         logger.info(f"Phoenix endpoint: {collector_endpoint}")
 
-        # Register Phoenix tracer with auto-instrumentation
-        # Using BatchSpanProcessor for production (recommended)
+
         tracer_provider = register(
             project_name=project_name,
             auto_instrument=True,  # Automatically instrument Google ADK
             batch=True  # Use BatchSpanProcessor instead of SimpleSpanProcessor
         )
 
-        logger.info("✅ Phoenix tracing initialized successfully!")
-        logger.info("📊 Traces will be available at: https://app.phoenix.arize.com")
-        logger.info("🔍 All agent interactions, tool calls, and model requests will be traced")
+        logger.info(" Phoenix tracing initialized successfully!")
+        logger.info(" Traces will be available at: https://app.phoenix.arize.com")
+        logger.info(" All agent interactions, tool calls, and model requests will be traced")
 
         return tracer_provider
 
@@ -128,9 +124,9 @@ def get_phoenix_info() -> dict:
     }
 
 
-# Example usage and testing
+
 if __name__ == "__main__":
-    # Configure logging for testing
+
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -156,9 +152,9 @@ if __name__ == "__main__":
     tracer = setup_phoenix_tracing()
 
     if tracer:
-        print("\n✅ Phoenix is ready to trace your agent!")
+        print("\n Phoenix is ready to trace your agent!")
     else:
-        print("\n⚠️  Phoenix tracing is not active")
+        print("\n  Phoenix tracing is not active")
         if not info['enabled']:
             print("   → Set ENABLE_PHOENIX_TRACING=true in .env to enable")
         elif not info['configured']:

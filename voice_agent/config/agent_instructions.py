@@ -157,5 +157,5 @@ class InstructionBuilder:
         return instruction
 
 
-# Default instruction builder instance
+
 instruction_builder = InstructionBuilder()
