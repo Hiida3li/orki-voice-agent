@@ -57,13 +57,13 @@ def setup_phoenix_tracing() -> Optional[object]:
         return None
 
     try:
-        # Import Phoenix components
+
         from phoenix.otel import register
 
-        # Get project name (default to 'voice-agent-tools')
+
         project_name = os.getenv("PHOENIX_PROJECT_NAME", "voice-agent-tools")
 
-        # Set environment variables for Phoenix
+
         os.environ["PHOENIX_API_KEY"] = api_key
         os.environ["PHOENIX_COLLECTOR_ENDPOINT"] = collector_endpoint
 
@@ -74,8 +74,8 @@ def setup_phoenix_tracing() -> Optional[object]:
 
         tracer_provider = register(
             project_name=project_name,
-            auto_instrument=True,  # Automatically instrument Google ADK
-            batch=True  # Use BatchSpanProcessor instead of SimpleSpanProcessor
+            auto_instrument=True,
+            batch=True
         )
 
         logger.info(" Phoenix tracing initialized successfully!")
