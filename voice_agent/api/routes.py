@@ -60,7 +60,7 @@ async def business_context_page():
         return HTMLResponse(content=f.read())
 
 
-#  API Routes
+
 
 @api_router.post("/extract-business-context", response_model=BusinessContextResponse)
 async def api_extract_business_context(request: BusinessContextRequest):

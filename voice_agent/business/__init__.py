@@ -15,12 +15,12 @@ from .extractor import (
 )
 
 __all__ = [
-    # Models
+
     'FAQ',
     'BusinessContext',
     'BusinessContextRequest',
     'BusinessContextResponse',
-    # Extractors
+
     'WebsiteExtractor',
     'BusinessContextExtractor',
     'extract_business_context',

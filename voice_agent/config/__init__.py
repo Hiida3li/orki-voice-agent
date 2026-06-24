@@ -14,13 +14,13 @@ from .agent_instructions import (
 )
 
 __all__ = [
-    # Settings
+
     'Settings',
     'settings',
-    # Observability
+
     'setup_phoenix_tracing',
     'get_phoenix_info',
-    # Instructions
+
     'AGENT_INSTRUCTION_TEMPLATE',
     'InstructionBuilder',
     'instruction_builder',
